@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">ReactiveArch</string>
+    <string name="location_not_enabled">Location is not enabled</string>
+    <string name="enable_location">Enable location</string>
+    <string name="enable">Enable</string>
+    <string name="deny">Deny</string>
+    <string name="accept">Accept</string>
+    <string name="location_denied">Location is denied</string>
+    <string name="location_alert">Location permission is needed to be able to get the restaurants around you</string>
+    <string name="name">Name</string>
+    <string name="city">city : N/A</string>
+    <string name="address">address : N/A</string>
+    <string name="network_connection">No Internet Connection</string>
+    <string name="general_error">Something went wrong</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

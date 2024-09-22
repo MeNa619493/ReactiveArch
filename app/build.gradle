@@ -1,0 +1,86 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-parcelize'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+}
+
+android {
+    namespace 'com.example.reactivearch'
+    compileSdk Android.compileSDK
+
+    defaultConfig {
+        applicationId Android.applicationId
+        minSdkVersion Android.minSDK
+        targetSdkVersion Android.targetSDK
+        versionCode Android.versionCode
+        versionName Android.versionName
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    def localProperties = new Properties()
+    localProperties.load(new FileInputStream("local.properties"))
+
+    buildTypes {
+        debug {
+            resValue("string", "google_map_api_key", localProperties['MAPS_API_KEY'])
+            resValue("string", "client_id_key", localProperties['CLIENT_ID'])
+            resValue("string", "client_secert_key", localProperties['CLIENT_SECERT'])
+            resValue("string", "api_key", localProperties['API_KEY'])
+        }
+    }
+}
+
+dependencies {
+    implementation Libs.kotlinStdLib
+    implementation Libs.coreExt
+    implementation Libs.appCompat
+    implementation Libs.material
+    implementation Libs.constraintLayout
+    implementation Libs.googleMap
+    implementation Libs.locationServices
+    implementation Libs.permissionsDispatcher
+    implementation libs.play.services.maps
+    implementation libs.androidx.appcompat
+    kapt Libs.permissionsDispatcherProcessor
+    implementation Libs.timber
+    implementation Libs.hiltAndroid
+    kapt Libs.hiltAndroidCompiler
+    implementation Libs.rxVersion
+    implementation Libs.rxAndroid
+    implementation Libs.retrofit
+    implementation Libs.gson
+    implementation Libs.gsonConverter
+    implementation Libs.rxAdapter
+    implementation Libs.loggingInterceptor
+    implementation Libs.fragmentKtx
+    implementation Libs.multidex
+    testImplementation TestLibs.junit
+    androidTestImplementation TestLibs.junit
+    androidTestImplementation TestLibs.espresso
+}
+
+kapt {
+    correctErrorTypes = true
+}
